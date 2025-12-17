@@ -24,6 +24,21 @@ test('Automate Flipkart - Search Product', async ({ page, context }) => {
   await newPage.waitForLoadState();
 
   // Wait for Add to Cart button and click
-  await newPage.locator("button[type='button']").click();
-  await newPage.waitForTimeout(5000);
+  await newPage.locator(".dSM5Ub.ugg2XR.IUmgrZ").click();
+
+  console.log(await newPage.locator("div[class='TOm_Ti VYxWdo'] span").textContent())
+
+  await newPage.waitForTimeout(1000);
+
+  await newPage.locator("input[placeholder='Search for products, brands and more']").fill("shoes")
+  await newPage.locator("svg[width='20']").click();
+ 
+
+  const [ page2 ] = await Promise.all([
+    newPage.context().waitForEvent('page'),
+    newPage.locator(".MZeksS").first().click()
+  ])
+
+  await page2.waitForTimeout(2000)
+
 });
